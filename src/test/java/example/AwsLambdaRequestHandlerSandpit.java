@@ -1,11 +1,5 @@
 package example;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -25,25 +19,5 @@ public class AwsLambdaRequestHandlerSandpit {
       Assertions.assertEquals("OK", result);
     }
   }
-
-  /**
-   * Make sure you run with the VM argument -Duk.co.ii.env.name=localdev
-   *
-   * @throws IOException
-   */
-  @Test
-  public void runNewAwsLambdaRequestHandler() throws IOException {
-    System.setProperty("spring.profiles.active", "lambda,local-populator");
-    System.setProperty("uk.co.ii.env.name", "devl");
-    NewAwsLambdaRequestHandler handler = new NewAwsLambdaRequestHandler();
-    ObjectMapper om = new ObjectMapper();
-    ByteArrayInputStream is = new ByteArrayInputStream(om.writeValueAsBytes(Map.of()));
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    handler.handleRequest(is, outputStream, null);
-    log.info("the result is {}", outputStream.toString());
-    assertEquals("\"dave\"", outputStream.toString());
-
-  }
-
 
 }
