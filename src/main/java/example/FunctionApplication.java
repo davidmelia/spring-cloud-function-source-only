@@ -1,12 +1,9 @@
 package example;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.stream.annotation.EnableBinding;
 
 @SpringBootApplication
-@Slf4j
 public class FunctionApplication {
 
   /*
@@ -16,6 +13,5 @@ public class FunctionApplication {
   public static void main(String[] args) {
     SpringApplication.run(FunctionApplication.class, args);
   }
-
 
 }
