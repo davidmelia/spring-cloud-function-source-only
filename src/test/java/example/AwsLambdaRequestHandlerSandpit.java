@@ -11,7 +11,8 @@ public class AwsLambdaRequestHandlerSandpit {
   // Running locally
   @Test
   public void runAwsLambdaRequestHandler() {
-    System.setProperty("spring.cloud.stream.source", "test");
+    System.setProperty("spring.cloud.stream.source", "test"); // this has no effect
+
 
     try (AwsLambdaRequestHandler handler = new AwsLambdaRequestHandler()) {
       Object result = handler.handleRequest(Map.of(), null);
