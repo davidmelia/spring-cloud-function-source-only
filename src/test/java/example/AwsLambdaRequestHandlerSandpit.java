@@ -20,7 +20,6 @@ public class AwsLambdaRequestHandlerSandpit {
   // Running locally
   @Test
   public void runAwsLambdaRequestHandler() {
-    System.setProperty("spring.cloud.stream.source", "test"); // this has no effect
 
 
     try (AwsLambdaRequestHandler handler = new AwsLambdaRequestHandler()) {
@@ -30,9 +29,8 @@ public class AwsLambdaRequestHandlerSandpit {
     }
   }
 
-  // @Test
+  @Test
   public void runFunctionInvoker() throws IOException {
-    System.setProperty("spring.cloud.stream.source", "test"); // this has no effect
 
     NewAwsLambdaRequestHandler handler = new NewAwsLambdaRequestHandler();
     ObjectMapper om = new ObjectMapper();
@@ -40,7 +38,7 @@ public class AwsLambdaRequestHandlerSandpit {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     handler.handleRequest(is, outputStream, null);
     log.info("the result is {}", outputStream.toString());
-    assertEquals("\"dave\"", outputStream.toString());
+    assertEquals("\"OK\"", outputStream.toString());
   }
 
 

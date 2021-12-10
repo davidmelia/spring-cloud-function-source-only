@@ -20,10 +20,6 @@
 		<aws-lambda-java-core.version>1.2.1</aws-lambda-java-core.version>	
 	</properties>
 	<dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-stream-kafka</artifactId>
-        </dependency>	
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
