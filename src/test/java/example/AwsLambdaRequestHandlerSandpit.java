@@ -1,9 +1,18 @@
 package example;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class AwsLambdaRequestHandlerSandpit {
@@ -20,5 +29,19 @@ public class AwsLambdaRequestHandlerSandpit {
       Assertions.assertEquals("OK", result);
     }
   }
+
+  // @Test
+  public void runFunctionInvoker() throws IOException {
+    System.setProperty("spring.cloud.stream.source", "test"); // this has no effect
+
+    NewAwsLambdaRequestHandler handler = new NewAwsLambdaRequestHandler();
+    ObjectMapper om = new ObjectMapper();
+    ByteArrayInputStream is = new ByteArrayInputStream(om.writeValueAsBytes(Map.of()));
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    handler.handleRequest(is, outputStream, null);
+    log.info("the result is {}", outputStream.toString());
+    assertEquals("\"dave\"", outputStream.toString());
+  }
+
 
 }
