@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CallMySpringBootStreamHandlerIntegration {
+public class CallMySpringBootStreamHandler {
 
 	/**
 	 * Works great but SpringBootStreamHandler is deprecated.
