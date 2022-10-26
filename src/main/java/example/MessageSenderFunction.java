@@ -29,7 +29,7 @@ public class MessageSenderFunction implements Function<Flux<Map<String, String>>
 		return flux.flatMap(v -> {
 			Object kafkaEvent = MessageBuilder
 					.withPayload(Map.of("Key", String.format("Value @ %s", ZonedDateTime.now(ZoneOffset.UTC))))
-					.setHeaderIfAbsent(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString()).build();
+					.setHeaderIfAbsent(KafkaHeaders.KEY, UUID.randomUUID().toString()).build();
 			log.info("Sending message to binding = {}", kafkaEvent);
 			if (streamBridge.send("test-out-0", kafkaEvent)) {
 				log.info("Message sent to binding = {}", kafkaEvent);
